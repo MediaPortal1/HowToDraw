@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">HowToDraw</string>
+    <string name="title_how_to">Draw</string>
+    <string name="steps">steps</string>
+    <string name="A">Image</string>
+    <string name="B">Drawing</string>
+    <string name="AB">Image + Drawing</string>
+    <string name="version">Version: 1.0.0</string>
+    <string name="developers">Coding by Robin and images by Vinni</string>
+    <string name="copyright">©2016 MediaPortal. All rights reserved.</string>
+    <string name="appsby">Apps by developer</string>
+    <string name="about">About</string>
+    <string name="welcome">Welcome!</string>
+    <string name="finish">Finish</string>
+</resources>
