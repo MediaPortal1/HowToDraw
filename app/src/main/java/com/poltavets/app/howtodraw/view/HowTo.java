@@ -7,6 +7,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PersistableBundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
@@ -35,11 +36,13 @@ public class HowTo extends AppCompatActivity implements HowToView{
     private FloatingActionButton statusFAB;
     private ImageView imageView;
     private int imagenumber;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.howtodraw);
+        handler=new Handler();
         if(savedInstanceState!=null)
             imagenumber=savedInstanceState.getInt("position");
         else
@@ -64,10 +67,11 @@ public class HowTo extends AppCompatActivity implements HowToView{
         findViewById(R.id.draw_undo).setOnClickListener((View.OnClickListener) howToPresenter);
         findViewById(R.id.draw_clear).setOnClickListener((View.OnClickListener) howToPresenter);
         findViewById(R.id.draw_size).setOnClickListener((View.OnClickListener) howToPresenter);
-        findViewById(R.id.moveBtn).setOnClickListener((View.OnClickListener)howToPresenter);
+        findViewById(R.id.moveBtn).setOnClickListener((View.OnClickListener) howToPresenter);
         findViewById(R.id.moveBtn).setOnLongClickListener((View.OnLongClickListener) howToPresenter);
         findViewById(R.id.backBtn).setOnClickListener((View.OnClickListener) howToPresenter);
         findViewById(R.id.backBtn).setOnLongClickListener((View.OnLongClickListener) howToPresenter);
+
     }
 
 
@@ -114,28 +118,44 @@ public class HowTo extends AppCompatActivity implements HowToView{
 
     @Override
     public void changeImageSrc(int image,int count,int position,String name) {
-        Drawable img= ResourcesCompat.getDrawable(getResources(),image,null);
-        ColorFilter filter=new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.CLEAR);
-        img.setColorFilter(filter);
-        imageView.setImageDrawable(img);
-        getSupportActionBar().setTitle(getResources().getString(R.string.title_how_to) + " " + name + ": " + position+"/"+(count-1));
-        if(position==0 || position+1==count){
-            if(position==0){
-                findViewById(R.id.backBtn).setEnabled(false);
-                findViewById(R.id.backBtn).setVisibility(View.INVISIBLE);
-            }
-                else {
-                findViewById(R.id.moveBtn).setEnabled(false);
-                findViewById(R.id.moveBtn).setVisibility(View.INVISIBLE);
-                Toast.makeText(this,getString(R.string.finish),Toast.LENGTH_SHORT).show();
-            }
-            }
-        else {
-            showNavButtons();
-        }
-
+        ChangeThread changeThread=new ChangeThread(image,count,position,name);
+        handler.post(changeThread);
     }
 
+    class ChangeThread implements Runnable{
+        int image;
+        int count;
+        int position;
+        String name;
+
+        public ChangeThread(int image, int count, int position, String name) {
+            this.image = image;
+            this.count = count;
+            this.position = position;
+            this.name = name;
+
+        }
+
+        @Override
+        public void run() {
+            imageView.setImageResource(image);
+            getSupportActionBar().setTitle(getResources().getString(R.string.title_how_to) + " " + name + ": " + (position+1)+"/"+(count));
+            if(position==0 || position+1==count){
+                if(position==0){
+                    findViewById(R.id.backBtn).setEnabled(false);
+                    findViewById(R.id.backBtn).setVisibility(View.INVISIBLE);
+                }
+                else {
+                    findViewById(R.id.moveBtn).setEnabled(false);
+                    findViewById(R.id.moveBtn).setVisibility(View.INVISIBLE);
+                    Toast.makeText(getApplicationContext(),getString(R.string.finish),Toast.LENGTH_SHORT).show();
+                }
+            }
+            else {
+                showNavButtons();
+            }
+        }
+    }
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);

@@ -9,7 +9,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/imageListItem"
-        android:src="@drawable/brus14"
+        android:src="@drawable/brus_14"
         android:background="@android:color/transparent"
         />
 

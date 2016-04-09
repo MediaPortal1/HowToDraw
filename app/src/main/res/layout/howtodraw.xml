@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/howto_image_view"
-        android:src="@drawable/brus14"
+        android:src="@drawable/brus_14"
         android:paddingTop="?attr/actionBarSize"
         android:paddingBottom="60dp"
         android:background="@android:color/transparent"
@@ -58,10 +58,17 @@
 
     android:id="@+id/view">
     <com.getbase.floatingactionbutton.FloatingActionButton
+        android:id="@+id/draw_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/delete"
+        fab:fab_size="mini"
+        />
+    <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/draw_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/lightbulb"
+        android:src="@drawable/lightbulb"
         fab:fab_size="mini"
         />
     <com.getbase.floatingactionbutton.FloatingActionButton
