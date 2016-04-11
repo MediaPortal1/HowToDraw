@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">КакНарисовать</string>
+    <string name="title_how_to">Нарисовать</string>
+    <string name="steps">шагов</string>
+    <string name="A">Картинка</string>
+    <string name="B">Рисовалка</string>
+    <string name="AB">Картинка + Рисовалка</string>
+    <string name="version">Version: 1.0.0</string>
+    <string name="developers">Coding by Robin and images by Vinni</string>
+    <string name="copyright">©2016 MediaPortal. All rights reserved.</string>
+    <string name="appsby">Наши приложения</string>
+    <string name="about">О нас</string>
+    <string name="welcome">Добро пожаловать!</string>
+    <string name="finish">Конец!</string>
+    <string name="save">Сохранить</string>
+    <string name="saved">Сохранено в галерею</string>
+    <string name="cancel">Отменить</string>
+    <string name="deletemessage">Вы действительно хотите очистить рисунок?</string>
+    <string name="areyousure">Вы уверены?</string>
+
+</resources>

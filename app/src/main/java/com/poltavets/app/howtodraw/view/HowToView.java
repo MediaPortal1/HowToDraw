@@ -7,7 +7,9 @@ import me.panavtec.drawableview.DrawableViewConfig;
  */
 public interface HowToView {
     void changeDrawConfig(DrawableViewConfig config);
-    void changeFABStatus(int status);
+    void changeFABBackgroundStatus(int status);
+    void changeFABGridStatus(int status);
     void changeImageSrc(int image,int count,int position,String name);
     void showNavButtons();
+    void clearDialog();
 }

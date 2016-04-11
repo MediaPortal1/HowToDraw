@@ -1,8 +1,8 @@
 package com.poltavets.app.howtodraw.presenter;
 
 import android.graphics.Color;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.View;
 
@@ -25,7 +25,8 @@ public class HowToPresenterImpl implements HowToPresenter,View.OnClickListener,V
     private int position;
     private int numberofimage;
     private String name;
-    private int status;
+    private int bgstatus;
+    private int gridstatus;
     private float stroke;
     private int color;
     private int cashcolor;
@@ -43,15 +44,16 @@ public class HowToPresenterImpl implements HowToPresenter,View.OnClickListener,V
         this.paint = true;
         this.drawableView=drawableView;
         this.fm=fm;
-        this.status=AB;
+        this.bgstatus =AB;
         this.position=position;
         this.count=Images.getImageListbyId(position).length;
         this.name= Images.getCharcters()[position];
         this.numberofimage=imagenumber;
+        this.gridstatus=A;
         config=new DrawableViewConfig();
         this.displayMetrics=displayMetrics;
         changeConfig();
-        howToView.changeImageSrc(Images.getImageListbyId(position)[numberofimage],count,position,Images.getCharcters()[position]);
+        howToView.changeImageSrc(Images.getImageListbyId(position)[numberofimage],count,numberofimage,Images.getCharcters()[position]);
     }
 
     @Override
@@ -65,7 +67,7 @@ public class HowToPresenterImpl implements HowToPresenter,View.OnClickListener,V
         config.setShowCanvasBounds(true); // If the view is bigger than canvas, with this the user will see the bounds (Recommended)
         config.setStrokeWidth(stroke);
         config.setMinZoom(1.0f);
-        config.setMaxZoom(4.0f);
+        config.setMaxZoom(1.0f);
         config.setCanvasWidth(displayMetrics.widthPixels);
         config.setCanvasHeight(displayMetrics.heightPixels);
         return config;
@@ -114,24 +116,33 @@ public class HowToPresenterImpl implements HowToPresenter,View.OnClickListener,V
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.grid_status:
+                if(gridstatus==A) {
+                    gridstatus = B;
+                    howToView.changeFABGridStatus(B);
+                }else if(gridstatus==B){
+                    gridstatus = A;
+                    howToView.changeFABGridStatus(A);
+                }
+                break;
             case R.id.draw_status:
-                switch(status){
+                switch(bgstatus){
                     case AB:
-                    status=A;
-                    howToView.changeFABStatus(A);
+                    bgstatus =A;
+                    howToView.changeFABBackgroundStatus(A);
                         break;
                     case A:
-                        status=B;
-                        howToView.changeFABStatus(B);
+                        bgstatus =B;
+                        howToView.changeFABBackgroundStatus(B);
                         break;
                     case B:
-                        status=AB;
-                        howToView.changeFABStatus(AB);
+                        bgstatus =AB;
+                        howToView.changeFABBackgroundStatus(AB);
                         break;
                 }
                 break;
             case R.id.draw_clear:
-                drawableView.clear();
+                howToView.clearDialog();
                 break;
             case R.id.draw_color:
                 DrawColorDialog colorDialog = new DrawColorDialog();

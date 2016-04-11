@@ -49,21 +49,14 @@
 </FrameLayout>
 
 
-<com.getbase.floatingactionbutton.FloatingActionsMenu
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    fab_labelsPosition="left"
-    android:background="@android:color/transparent"
-    android:layout_alignParentBottom="true"
-    android:layout_alignParentEnd="true"
-
-    android:id="@+id/view">
     <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/grid_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/grid"
         fab:fab_size="mini"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         />
     <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/draw_status"
@@ -71,6 +64,8 @@
         android:layout_height="wrap_content"
         android:src="@mipmap/lightbulb"
         fab:fab_size="mini"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/grid_status"
         />
     <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/draw_color"
@@ -78,6 +73,8 @@
         android:layout_height="wrap_content"
         android:src="@mipmap/color"
         fab:fab_size="mini"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/draw_status"
         />
     <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/draw_size"
@@ -85,6 +82,8 @@
         android:layout_height="wrap_content"
         android:src="@mipmap/brush"
         fab:fab_size="mini"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/draw_color"
         />
     <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/draw_undo"
@@ -92,6 +91,8 @@
         android:layout_height="wrap_content"
         android:src="@mipmap/undo"
         fab:fab_size="mini"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/draw_size"
         />
     <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/draw_clear"
@@ -99,9 +100,11 @@
         android:layout_height="wrap_content"
         android:src="@mipmap/delete"
         fab:fab_size="mini"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/draw_undo"
+
         />
 
-    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
     <ImageButton
         android:layout_width="wrap_content"

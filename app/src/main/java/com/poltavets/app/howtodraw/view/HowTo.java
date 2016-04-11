@@ -1,31 +1,43 @@
 package com.poltavets.app.howtodraw.view;
 
+import android.content.DialogInterface;
+import android.content.pm.ActivityInfo;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.LightingColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.os.Message;
 import android.os.PersistableBundle;
-import android.support.v4.app.DialogFragment;
+import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.poltavets.app.howtodraw.R;
-import com.poltavets.app.howtodraw.model.Images;
 import com.poltavets.app.howtodraw.presenter.HowToPresenter;
 import com.poltavets.app.howtodraw.presenter.HowToPresenterImpl;
-import com.poltavets.app.howtodraw.view.fragments.DrawSizeDialog;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 import me.panavtec.drawableview.DrawableView;
 import me.panavtec.drawableview.DrawableViewConfig;
@@ -33,21 +45,18 @@ import me.panavtec.drawableview.DrawableViewConfig;
 public class HowTo extends AppCompatActivity implements HowToView{
     private DrawableView drawableView;
     private HowToPresenter howToPresenter;
-    private FloatingActionButton statusFAB;
+    private FloatingActionButton statusFAB,gridFAB;
     private ImageView imageView;
     private int imagenumber;
     private Handler handler;
+    private ImageButton back,move;
+    private ViewGroup background;
+    private String filename;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.howtodraw);
-        handler=new Handler();
-        if(savedInstanceState!=null)
-            imagenumber=savedInstanceState.getInt("position");
-        else
-            imagenumber=0;
-        drawableView=(DrawableView)findViewById(R.id.drawview);
         Toolbar toolbar=(Toolbar)findViewById(R.id.howtodraw_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getResources().getString(R.string.title_how_to));
@@ -57,20 +66,28 @@ public class HowTo extends AppCompatActivity implements HowToView{
         DisplayMetrics metricsB = new DisplayMetrics();
         display.getMetrics(metricsB);
         imageView=(ImageView)findViewById(R.id.howto_image_view);
+        if(savedInstanceState!=null)
+            imagenumber=savedInstanceState.getInt("position");
+        drawableView=(DrawableView)findViewById(R.id.drawview);
         howToPresenter=new HowToPresenterImpl(drawableView,displaymetrics,(HowToView)this,getSupportFragmentManager(),getIntent().getIntExtra("position", 0),imagenumber);
         howToPresenter.initDrawConfig();
         statusFAB=(FloatingActionButton)findViewById(R.id.draw_status);
         statusFAB.setOnClickListener((View.OnClickListener) howToPresenter);
         statusFAB.setColorNormal(ContextCompat.getColor(this, R.color.blue));
         statusFAB.setColorPressed(android.R.color.white);
+        gridFAB=(FloatingActionButton)findViewById(R.id.grid_status);
+        gridFAB.setOnClickListener((View.OnClickListener)howToPresenter);
         findViewById(R.id.draw_color).setOnClickListener((View.OnClickListener) howToPresenter);
         findViewById(R.id.draw_undo).setOnClickListener((View.OnClickListener) howToPresenter);
         findViewById(R.id.draw_clear).setOnClickListener((View.OnClickListener) howToPresenter);
         findViewById(R.id.draw_size).setOnClickListener((View.OnClickListener) howToPresenter);
-        findViewById(R.id.moveBtn).setOnClickListener((View.OnClickListener) howToPresenter);
+        move=(ImageButton)findViewById(R.id.moveBtn);
+        move.setOnClickListener((View.OnClickListener) howToPresenter);
         findViewById(R.id.moveBtn).setOnLongClickListener((View.OnLongClickListener) howToPresenter);
-        findViewById(R.id.backBtn).setOnClickListener((View.OnClickListener) howToPresenter);
-        findViewById(R.id.backBtn).setOnLongClickListener((View.OnLongClickListener) howToPresenter);
+        back=(ImageButton)findViewById(R.id.backBtn);
+        back.setOnClickListener((View.OnClickListener) howToPresenter);
+        back.setOnLongClickListener((View.OnLongClickListener) howToPresenter);
+        background=(ViewGroup)findViewById(R.id.howto_bg);
 
     }
 
@@ -81,7 +98,7 @@ public class HowTo extends AppCompatActivity implements HowToView{
     }
 
     @Override
-    public void changeFABStatus(int status) {
+    public void changeFABBackgroundStatus(int status) {
         switch (status){
             case HowToPresenterImpl.AB:
                 drawableView.setVisibility(View.VISIBLE);
@@ -109,6 +126,20 @@ public class HowTo extends AppCompatActivity implements HowToView{
     }
 
     @Override
+    public void changeFABGridStatus(int status) {
+        switch (status){
+            case HowToPresenterImpl.A:
+                gridFAB.setImageResource(R.mipmap.grid_off);
+                background.setBackgroundResource(R.drawable.bgklekta);
+                break;
+            case HowToPresenterImpl.B:
+                gridFAB.setImageResource(R.mipmap.grid);
+                background.setBackgroundColor(Color.WHITE);
+                break;
+        }
+    }
+
+    @Override
     public void showNavButtons() {
         findViewById(R.id.backBtn).setEnabled(true);
         findViewById(R.id.backBtn).setVisibility(View.VISIBLE);
@@ -117,29 +148,46 @@ public class HowTo extends AppCompatActivity implements HowToView{
     }
 
     @Override
-    public void changeImageSrc(int image,int count,int position,String name) {
-        ChangeThread changeThread=new ChangeThread(image,count,position,name);
-        handler.post(changeThread);
+    public void clearDialog() {
+        AlertDialog dialog=new AlertDialog.Builder(HowTo.this)
+                .setTitle(R.string.areyousure)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        drawableView.clear();
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setMessage(R.string.deletemessage)
+                .setCancelable(true)
+                .setIcon(R.mipmap.delete).create();
+            dialog.show();
     }
 
-    class ChangeThread implements Runnable{
-        int image;
-        int count;
-        int position;
-        String name;
-
-        public ChangeThread(int image, int count, int position, String name) {
-            this.image = image;
-            this.count = count;
-            this.position = position;
-            this.name = name;
-
+    @Override
+    public void changeImageSrc(int image,int count,int position,String name) {
+        filename=name+"_"+image+"_"+position;
+        imagenumber=position;
+        if(move!=null || back!=null) {
+            move.setEnabled(false);
+            back.setEnabled(false);
         }
+        Handler handler=new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                if(getRequestedOrientation()==ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+                    imageView.setImageBitmap(decodeSampledBitmapFromResource(getResources(), msg.what,100,100));
+                else imageView.setImageBitmap(decodeSampledBitmapFromResource(getResources(), msg.what,400,400));
+            }
+        };
+        handler.sendEmptyMessage(image);
 
-        @Override
-        public void run() {
-            imageView.setImageResource(image);
-            getSupportActionBar().setTitle(getResources().getString(R.string.title_how_to) + " " + name + ": " + (position+1)+"/"+(count));
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_how_to) + " " + name + ": " + (position+1)+"/"+(count));
             if(position==0 || position+1==count){
                 if(position==0){
                     findViewById(R.id.backBtn).setEnabled(false);
@@ -154,17 +202,102 @@ public class HowTo extends AppCompatActivity implements HowToView{
             else {
                 showNavButtons();
             }
+        if(move!=null || back!=null) {
+            move.setEnabled(true);
+            back.setEnabled(true);
         }
+
+        }
+    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
+                                                         int reqWidth, int reqHeight) {
+
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(res, resId, options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeResource(res, resId, options);
     }
+
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) > reqHeight
+                    && (halfWidth / inSampleSize) > reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
+    }
+
     @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
+    protected void onSaveInstanceState(Bundle outState) {
         outState.putInt("position",imagenumber);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
         imagenumber=savedInstanceState.getInt("position");
+        super.onRestoreInstanceState(savedInstanceState);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.howto_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.saveimage) {
+            String path = Environment.getExternalStorageDirectory().toString();
+            OutputStream fOut = null;
+            File file = new File(path, filename + ".png"); // the File to save to
+            try {
+                fOut = new FileOutputStream(file);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            drawableView.setDrawingCacheEnabled(true);
+            drawableView.buildDrawingCache();
+            Bitmap pictureBitmap = drawableView.getDrawingCache(); // obtaining the Bitmap
+            Bitmap newBitmap = Bitmap.createBitmap(pictureBitmap.getWidth(), pictureBitmap.getHeight(), pictureBitmap.getConfig());
+            Canvas canvas = new Canvas(newBitmap);
+            canvas.drawColor(Color.WHITE);
+            canvas.drawBitmap(pictureBitmap, 0, 0, null);
+            newBitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+            try {
+                fOut.flush();
+                fOut.close(); // do not forget to close the stream
+                MediaStore.Images.Media.insertImage(getContentResolver(), file.getAbsolutePath(), file.getName(), file.getName());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                Toast.makeText(getApplicationContext(), getString(R.string.saved), Toast.LENGTH_SHORT).show();
+                drawableView.setDrawingCacheEnabled(false);
+
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
