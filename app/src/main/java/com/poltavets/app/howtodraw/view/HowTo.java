@@ -183,6 +183,7 @@ public class HowTo extends AppCompatActivity implements HowToView{
                 if(getRequestedOrientation()==ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
                     imageView.setImageBitmap(decodeSampledBitmapFromResource(getResources(), msg.what,100,100));
                 else imageView.setImageBitmap(decodeSampledBitmapFromResource(getResources(), msg.what,400,400));
+//                imageView.setImageResource(msg.what);
             }
         };
         handler.sendEmptyMessage(image);

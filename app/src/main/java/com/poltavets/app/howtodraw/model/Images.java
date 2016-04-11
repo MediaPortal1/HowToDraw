@@ -44,23 +44,24 @@ public class Images {
         }
         return null;
     }
+    public static int[] array_brus={
+        R.drawable.brus_1,
+                R.drawable.brus_2,
+                R.drawable.brus_3,
+                R.drawable.brus_4,
+                R.drawable.brus_5,
+                R.drawable.brus_6,
+                R.drawable.brus_7,
+                R.drawable.brus_8,
+                R.drawable.brus_9,
+                R.drawable.brus_10,
+                R.drawable.brus_11,
+                R.drawable.brus_12,
+                R.drawable.brus_13,
+                R.drawable.brus_14
+    };
     public static int[] getBrus(){
-      return  new int[]{
-            R.drawable.brus_1,
-            R.drawable.brus_2,
-            R.drawable.brus_3,
-            R.drawable.brus_4,
-            R.drawable.brus_5,
-            R.drawable.brus_6,
-            R.drawable.brus_7,
-            R.drawable.brus_8,
-            R.drawable.brus_9,
-            R.drawable.brus_10,
-            R.drawable.brus_11,
-            R.drawable.brus_12,
-            R.drawable.brus_13,
-            R.drawable.brus_14,
-              };
+      return  array_brus;
     }
     public static int[] getAnna(){
         return  new int[]{
