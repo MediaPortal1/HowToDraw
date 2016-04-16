@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">КакНарисовать</string>
-    <string name="title_how_to">Нарисовать</string>
     <string name="steps">шагов</string>
     <string name="A">Картинка</string>
     <string name="B">Рисовалка</string>
@@ -17,5 +15,6 @@
     <string name="cancel">Отменить</string>
     <string name="deletemessage">Вы действительно хотите очистить рисунок?</string>
     <string name="areyousure">Вы уверены?</string>
+    <string name="proversion">Убрать рекламу</string>
 
 </resources>

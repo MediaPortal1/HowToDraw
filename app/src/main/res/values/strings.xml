@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">HowToDraw</string>
+    <string name="admob.banner.howto.top">ca-app-pub-7621441901931275/8304181546</string>
+    <string name="admob.banner.howto.bottom">ca-app-pub-7621441901931275/6031712742</string>
+    <string name="app_name">HowToDraw: Tekken</string>
     <string name="title_how_to">Draw</string>
     <string name="steps">steps</string>
     <string name="A">Image</string>
@@ -18,4 +20,5 @@
     <string name="cancel">Cancel</string>
     <string name="areyousure">Are you sure?</string>
     <string name="deletemessage">Do you want to delete your picture?</string>
+    <string name="proversion">Remove ads</string>
 </resources>

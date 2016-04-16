@@ -1,0 +1,22 @@
+<resources>
+    <string name="title_how_to">Desenhar</string>
+    <string name="steps">passos</string>
+    <string name="A">Imagem</string>
+    <string name="B">Desenho</string>
+    <string name="AB">Imagem + Desenho</string>
+    <string name="version">Version: 1.0.0</string>
+    <string name="developers">Coding by Robin and images by Vinni</string>
+    <string name="copyright">©2016 MediaPortal. All rights reserved.</string>
+    <string name="appsby">Aplicativos do desenvolvedor</string>
+    <string name="about">Sobre</string>
+    <string name="welcome">Welcome!</string>
+    <string name="finish">Bem vinda</string>
+    <string name="save">Salvar</string>
+    <string name="saved">Salvo na galeria</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancelar</string>
+    <string name="areyousure">Você tem certeza?</string>
+    <string name="deletemessage">Você quer apagar a sua imagem?</string>
+    <string name="proversion">remover ADS</string>
+
+</resources>

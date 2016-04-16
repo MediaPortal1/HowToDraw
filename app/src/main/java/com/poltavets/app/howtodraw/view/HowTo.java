@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.PersistableBundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.poltavets.app.howtodraw.R;
 import com.poltavets.app.howtodraw.presenter.HowToPresenter;
 import com.poltavets.app.howtodraw.presenter.HowToPresenterImpl;
@@ -52,6 +55,7 @@ public class HowTo extends AppCompatActivity implements HowToView{
     private ImageButton back,move;
     private ViewGroup background;
     private String filename;
+    private AdView topAd,bottomAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +92,14 @@ public class HowTo extends AppCompatActivity implements HowToView{
         back.setOnClickListener((View.OnClickListener) howToPresenter);
         back.setOnLongClickListener((View.OnLongClickListener) howToPresenter);
         background=(ViewGroup)findViewById(R.id.howto_bg);
-
+        if(findViewById(R.id.floatingmenu)!=null){
+            topAd = (AdView) findViewById(R.id.adv_top);
+            AdRequest adRequestTop = new AdRequest.Builder().build();
+            topAd.loadAd(adRequestTop);
+        }
+        bottomAd = (AdView) findViewById(R.id.adv_bottom);
+        AdRequest adRequestBottom = new AdRequest.Builder().build();
+        bottomAd.loadAd(adRequestBottom);
     }
 
 
@@ -300,5 +311,38 @@ public class HowTo extends AppCompatActivity implements HowToView{
         }
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public void onPause() {
+        if (topAd != null) {
+            topAd.pause();
+        }
+        if (bottomAd != null) {
+            bottomAd.pause();
+        }
 
+        super.onPause();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (topAd != null) {
+            topAd.resume();
+        }
+        if (bottomAd != null) {
+            bottomAd.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (topAd != null) {
+            topAd.destroy();
+        }
+        if (bottomAd != null) {
+            bottomAd.destroy();
+        }
+        howToPresenter.destroy();
+        howToPresenter=null;
+        super.onDestroy();
+    }
 }

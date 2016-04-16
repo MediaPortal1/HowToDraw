@@ -17,4 +17,5 @@ public interface HowToPresenter {
     void showElements();
     void saveImage();
     void changeConfig();
+    void destroy();
 }

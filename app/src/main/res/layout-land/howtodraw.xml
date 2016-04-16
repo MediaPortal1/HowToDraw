@@ -5,6 +5,7 @@
     android:id="@+id/howto_bg"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/bgklekta"
 
     >
@@ -23,110 +24,141 @@
             app:popupTheme="@style/SchoolStyle.ToolBarAction"
             android:background="?attr/colorPrimary"
             />
+
     </android.support.design.widget.AppBarLayout>
 
 
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_centerInParent="true"
-    >
-    <ImageView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/howto_image_view"
-        android:src="@drawable/brus_14"
-        android:paddingTop="?attr/actionBarSize"
-        android:paddingBottom="60dp"
-        android:background="@android:color/transparent"
-        />
-    <me.panavtec.drawableview.DrawableView
+        android:layout_below="@+id/howtodraw_appbar">
+
+        <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/drawview"
-        android:background="@android:color/transparent"
-        />
-</FrameLayout>
+            >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/howto_image_view"
+            android:src="@drawable/brus_14"
+            android:paddingBottom="90dp"
+            android:background="@android:color/transparent"
+            />
+
+            <me.panavtec.drawableview.DrawableView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/drawview"
+                android:background="@android:color/transparent"
+                android:layout_gravity="center_horizontal|top" />
+        </FrameLayout>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/grid_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/grid"
+            fab:fab_size="mini"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="40dp"
+            />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/draw_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/lightbulb"
+            fab:fab_size="mini"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/grid_status"
+            android:layout_marginBottom="40dp"
+
+            />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/draw_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/color"
+            fab:fab_size="mini"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/draw_status"
+            android:layout_marginBottom="40dp"
+
+            />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/draw_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/brush"
+            fab:fab_size="mini"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/draw_color"
+            android:layout_marginBottom="40dp"
+
+            />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/draw_undo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/undo"
+            fab:fab_size="mini"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/draw_size"
+            android:layout_marginBottom="40dp"
+
+            />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/draw_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/delete"
+            fab:fab_size="mini"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/draw_undo"
+            android:layout_marginBottom="40dp"
 
 
-    <com.getbase.floatingactionbutton.FloatingActionButton
-        android:id="@+id/grid_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/grid"
-        fab:fab_size="mini"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        />
-    <com.getbase.floatingactionbutton.FloatingActionButton
-        android:id="@+id/draw_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/lightbulb"
-        fab:fab_size="mini"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@id/grid_status"
-        />
-    <com.getbase.floatingactionbutton.FloatingActionButton
-        android:id="@+id/draw_color"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/color"
-        fab:fab_size="mini"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@id/draw_status"
-        />
-    <com.getbase.floatingactionbutton.FloatingActionButton
-        android:id="@+id/draw_size"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/brush"
-        fab:fab_size="mini"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@id/draw_color"
-        />
-    <com.getbase.floatingactionbutton.FloatingActionButton
-        android:id="@+id/draw_undo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/undo"
-        fab:fab_size="mini"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@id/draw_size"
-        />
-    <com.getbase.floatingactionbutton.FloatingActionButton
-        android:id="@+id/draw_clear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/delete"
-        fab:fab_size="mini"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@id/draw_undo"
+            />
 
-        />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/backBtn"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/arrowback"
+            android:background="@android:color/transparent"
+            />
 
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/moveBtn"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:src="@mipmap/arrow"
+            android:background="@android:color/transparent"
+            android:layout_toRightOf="@id/backBtn"
+            android:layout_marginLeft="0dp"
+            />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/backBtn"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentLeft="true"
-        android:src="@mipmap/arrowback"
-        android:background="@android:color/transparent"
-        />
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adv_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            app:adUnitId="@string/admob.banner.howto.bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/moveBtn"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
-        android:src="@mipmap/arrow"
-        android:background="@android:color/transparent"
-        android:layout_toRightOf="@id/backBtn"
-        android:layout_marginLeft="20dp"
-        />
 </RelativeLayout>

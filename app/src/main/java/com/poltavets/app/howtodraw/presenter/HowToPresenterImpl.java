@@ -67,7 +67,7 @@ public class HowToPresenterImpl implements HowToPresenter,View.OnClickListener,V
         config.setShowCanvasBounds(true); // If the view is bigger than canvas, with this the user will see the bounds (Recommended)
         config.setStrokeWidth(stroke);
         config.setMinZoom(1.0f);
-        config.setMaxZoom(1.0f);
+        config.setMaxZoom(5.0f);
         config.setCanvasWidth(displayMetrics.widthPixels);
         config.setCanvasHeight(displayMetrics.heightPixels);
         return config;
@@ -128,14 +128,14 @@ public class HowToPresenterImpl implements HowToPresenter,View.OnClickListener,V
             case R.id.draw_status:
                 switch(bgstatus){
                     case AB:
-                    bgstatus =A;
-                    howToView.changeFABBackgroundStatus(A);
-                        break;
-                    case A:
-                        bgstatus =B;
-                        howToView.changeFABBackgroundStatus(B);
+                    bgstatus =B;
+                    howToView.changeFABBackgroundStatus(B);
                         break;
                     case B:
+                        bgstatus =A;
+                        howToView.changeFABBackgroundStatus(A);
+                        break;
+                    case A:
                         bgstatus =AB;
                         howToView.changeFABBackgroundStatus(AB);
                         break;
@@ -180,5 +180,13 @@ public class HowToPresenterImpl implements HowToPresenter,View.OnClickListener,V
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public void destroy() {
+        this.howToView=null;
+        this.config=null;
+        this.displayMetrics=null;
+        this.fm=null;
     }
 }

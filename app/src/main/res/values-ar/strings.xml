@@ -1,0 +1,22 @@
+<resources>
+    <string name="title_how_to">رسم</string>
+    <string name="steps">خطوات</string>
+    <string name="A">صورة</string>
+    <string name="B">رسم</string>
+    <string name="AB">صور+ة+رسم</string>
+    <string name="version">Version: 1.0.0</string>
+    <string name="developers">Coding by Robin and images by Vinni</string>
+    <string name="copyright">©2016 MediaPortal. All rights reserved.</string>
+    <string name="appsby">تطبيقات من قبل المطور</string>
+    <string name="about">حول</string>
+    <string name="welcome">أهلا بك!</string>
+    <string name="finish">نهاية</string>
+    <string name="save">حفظ</string>
+    <string name="saved">حفظها في معرض</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="areyousure">هل أنت واثق؟</string>
+    <string name="deletemessage">هل تريد حذف صورتك؟</string>
+    <string name="proversion">إزالة ADS</string>
+
+</resources>
