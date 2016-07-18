@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/howto_image_view"
-            android:src="@drawable/brus_14"
+            android:src="@drawable/picachu_8"
             android:paddingBottom="90dp"
             android:background="@android:color/transparent"
             />
@@ -126,7 +126,7 @@
 
             />
 
-        <ImageButton
+        <com.getbase.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/backBtn"
@@ -134,17 +134,17 @@
             android:layout_marginLeft="0dp"
             android:layout_marginBottom="10dp"
             android:layout_alignParentLeft="true"
-            android:src="@mipmap/arrowback"
+            android:src="@mipmap/arrow_left"
             android:background="@android:color/transparent"
             />
 
-        <ImageButton
+        <com.getbase.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/moveBtn"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="10dp"
-            android:src="@mipmap/arrow"
+            android:src="@mipmap/arrow_right"
             android:background="@android:color/transparent"
             android:layout_toRightOf="@id/backBtn"
             android:layout_marginLeft="0dp"

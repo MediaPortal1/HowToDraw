@@ -9,5 +9,6 @@
     <item android:id="@+id/removeads"
     android:title="@string/proversion"
     app:showAsAction="ifRoom"
+        android:visible="false"
     />
 </menu>

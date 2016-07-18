@@ -4,7 +4,7 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
     defaultConfig {
-        applicationId 'com.poltavets.app.howtodrawfree'
+        applicationId 'com.poltavets.app.howtodrawpokemonsfree'
         minSdkVersion 17
         targetSdkVersion 23
         versionCode 1

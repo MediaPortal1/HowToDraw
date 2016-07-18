@@ -8,7 +8,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         >
-        <activity android:name=".view.Main"
+        <activity android:name="com.poltavets.app.howtodrawpokemonsfree.view.Main"
             android:theme="@style/SchoolStyle.ColdStar"
             >
             <intent-filter>
@@ -16,12 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".view.HowTo"
+        <activity android:name="com.poltavets.app.howtodrawpokemonsfree.view.HowTo"
         android:theme="@style/SchoolStyle"
             >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.Main"
+                android:value="com.poltavets.app.howtodrawpokemonsfree.view.Main"
                 />
         </activity>
 
