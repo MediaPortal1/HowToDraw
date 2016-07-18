@@ -5,7 +5,8 @@
     android:title="@string/save"
     android:icon="@mipmap/floppy"
     app:showAsAction="always"
-    /><item android:id="@+id/removeads"
+    />
+    <item android:id="@+id/removeads"
     android:title="@string/proversion"
     app:showAsAction="ifRoom"
     />

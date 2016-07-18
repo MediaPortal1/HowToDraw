@@ -1,4 +1,7 @@
 <resources>
+    <string name="admob.banner.howto.top">ca-app-pub-7621441901931275/8304181546</string>
+    <string name="admob.banner.howto.bottom">ca-app-pub-7621441901931275/6031712742</string>
+    <string name="app_name">HowToDraw: Tekken</string>
     <string name="title_how_to">Dibujar</string>
     <string name="steps">pasos</string>
     <string name="A">Imagen</string>
@@ -17,4 +20,6 @@
     <string name="cancel">Cancelar</string>
     <string name="areyousure">¿Estás seguro?</string>
     <string name="deletemessage">evitar los anuncios</string>
+    <string name="proversion">Remove ads</string>
+
 </resources>

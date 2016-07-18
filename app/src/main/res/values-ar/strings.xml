@@ -1,4 +1,7 @@
 <resources>
+    <string name="admob.banner.howto.top">ca-app-pub-7621441901931275/8304181546</string>
+    <string name="admob.banner.howto.bottom">ca-app-pub-7621441901931275/6031712742</string>
+    <string name="app_name">HowToDraw: Tekken</string>
     <string name="title_how_to">رسم</string>
     <string name="steps">خطوات</string>
     <string name="A">صورة</string>

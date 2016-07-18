@@ -1,6 +1,7 @@
 package com.poltavets.app.howtodraw.view;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -61,6 +62,7 @@ public class Main extends AppCompatActivity implements AdapterView.OnItemClickLi
                 break;
             case R.id.appsbyme_menu:
                 Toast.makeText(this,getString(R.string.welcome),Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://search?q=pub:Alex Poltavets")));
                 break;
         }
     return true;

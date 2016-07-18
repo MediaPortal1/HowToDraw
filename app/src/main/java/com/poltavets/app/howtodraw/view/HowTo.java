@@ -1,6 +1,7 @@
 package com.poltavets.app.howtodraw.view;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -8,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -308,6 +310,9 @@ public class HowTo extends AppCompatActivity implements HowToView{
                 drawableView.setDrawingCacheEnabled(false);
 
             }
+        }
+        else if(item.getItemId() == R.id.removeads){
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.poltavets.app.howtodraw")));
         }
         return super.onOptionsItemSelected(item);
     }
