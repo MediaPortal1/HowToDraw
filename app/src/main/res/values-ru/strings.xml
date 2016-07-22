@@ -21,5 +21,7 @@
     <string name="deletemessage">Вы действительно хотите очистить рисунок?</string>
     <string name="areyousure">Вы уверены?</string>
     <string name="proversion">Убрать рекламу</string>
+    <string name="moreapps.question">Do you want to see more apps from developer?</string>
+    <string name="moreapps">More apps</string>
 
 </resources>

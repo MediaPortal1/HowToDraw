@@ -21,5 +21,7 @@
     <string name="areyousure">Você tem certeza?</string>
     <string name="deletemessage">Você quer apagar a sua imagem?</string>
     <string name="proversion">remover ADS</string>
+    <string name="moreapps.question">Do you want to see more apps from developer?</string>
+    <string name="moreapps">More apps</string>
 
 </resources>
