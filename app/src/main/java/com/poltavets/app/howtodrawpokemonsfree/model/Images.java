@@ -184,6 +184,58 @@ public class Images {
             R.drawable.pikavee_9,
             R.drawable.pikavee_10,
     };
+    public static int[] array_broke = {
+            R.drawable.broke_1,
+            R.drawable.broke_2,
+            R.drawable.broke_3,
+            R.drawable.broke_4,
+            R.drawable.broke_5,
+            R.drawable.broke_6,
+            R.drawable.broke_7,
+            R.drawable.broke_8,
+            R.drawable.broke_9,
+    };
+    public static int[] array_chartle = {
+            R.drawable.chartle_1,
+            R.drawable.chartle_2,
+            R.drawable.chartle_3,
+            R.drawable.chartle_4,
+            R.drawable.chartle_5,
+            R.drawable.chartle_6,
+            R.drawable.chartle_7,
+            R.drawable.chartle_8,
+            R.drawable.chartle_9,
+            R.drawable.chartle_10,
+            R.drawable.chartle_11,
+    };
+    public static int[] array_victribeel = {
+            R.drawable.victribeel_1,
+            R.drawable.victribeel_2,
+            R.drawable.victribeel_3,
+            R.drawable.victribeel_4,
+            R.drawable.victribeel_5,
+            R.drawable.victribeel_6,
+            R.drawable.victribeel_7,
+            R.drawable.victribeel_8,
+            R.drawable.victribeel_9,
+            R.drawable.victribeel_10,
+    };
+    public static int[] array_vivvilion = {
+            R.drawable.vivvilion_1,
+            R.drawable.vivvilion_2,
+            R.drawable.vivvilion_3,
+            R.drawable.vivvilion_4,
+            R.drawable.vivvilion_5,
+    };
+    public static int[] array_vulpix = {
+            R.drawable.vulpix_1,
+            R.drawable.vulpix_2,
+            R.drawable.vulpix_3,
+            R.drawable.vulpix_4,
+            R.drawable.vulpix_5,
+            R.drawable.vulpix_6,
+            R.drawable.vulpix_7,
+    };
 
     private static String[] characters = new String[]{
             "Amaura",//0
@@ -200,7 +252,12 @@ public class Images {
             "Chartoise",//11
             "Koffing",//12
             "Megaskeptille",//13
-            "Pikavee",//13
+            "Pikavee",//14
+            "Broke",//15
+            "Chartle",//16
+            "Victribeel",//17
+            "Vivvilion",//18
+            "Vulpix",//19
     };
     private static int[] previews = new int[]{
             R.drawable.amaura_9, //AMAURA | 0
@@ -218,6 +275,11 @@ public class Images {
             R.drawable.koffing_8, //KOFFING | 12
             R.drawable.skeptile_12, //SKEPTILLE | 13
             R.drawable.pikavee_10, //PIKAVEE | 14
+            R.drawable.broke_9, //BROKE | 15
+            R.drawable.chartle_11, //CHARTLE | 16
+            R.drawable.victribeel_10, //VICTRIBEEL | 17
+            R.drawable.vivvilion_5, //VIVVILION | 18
+            R.drawable.vulpix_7, //VULPIX | 19
 
     };
 
@@ -319,6 +381,36 @@ public class Images {
                 map.put("steps", getPikavee().length);
                 map.put("stars", 3);
                 break;
+            case 15:
+                map.put("name", characters[15]);
+                map.put("preview", previews[15]);
+                map.put("steps", getBroke().length);
+                map.put("stars", 3);
+                break;
+            case 16:
+                map.put("name", characters[16]);
+                map.put("preview", previews[16]);
+                map.put("steps", getChartle().length);
+                map.put("stars", 3);
+                break;
+            case 17:
+                map.put("name", characters[17]);
+                map.put("preview", previews[17]);
+                map.put("steps", getVictribeel().length);
+                map.put("stars", 3);
+                break;
+            case 18:
+                map.put("name", characters[18]);
+                map.put("preview", previews[18]);
+                map.put("steps", getVivvilion().length);
+                map.put("stars", 2);
+                break;
+            case 19:
+                map.put("name", characters[19]);
+                map.put("preview", previews[19]);
+                map.put("steps", getVulpix().length);
+                map.put("stars", 2);
+                break;
         }
         return map;
     }
@@ -355,6 +447,16 @@ public class Images {
                 return getSkeptille();
             case 14:
                 return getPikavee();
+            case 15:
+                return getBroke();
+            case 16:
+                return getChartle();
+            case 17:
+                return getVictribeel();
+            case 18:
+                return getVivvilion();
+            case 19:
+                return getVulpix();
 
         }
         return null;
@@ -413,6 +515,22 @@ public class Images {
     }
     public static int[] getPikavee() {
         return array_pikavee;
+    }
+    public static int[] getBroke() {
+        return array_broke;
+    }
+    public static int[] getChartle() {
+        return array_chartle;
+    }
+
+    public static int[] getVictribeel() {
+        return array_victribeel;
+    }
+    public static int[] getVivvilion() {
+        return array_vivvilion;
+    }
+    public static int[] getVulpix() {
+        return array_vulpix;
     }
 
 
